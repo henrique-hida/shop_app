@@ -65,6 +65,13 @@ flutter:
     - assets/images/obi.png
     - assets/images/rashguard.png
     - assets/images/surippa.png
+    - assets/images/black_mizuno.png
+    - assets/images/brown_mizuno.png
+    - assets/images/judogi_mizuno.png
+    - assets/images/judogi_adidas.png
+    - assets/images/rashguards_tempestal.png
+    - assets/images/sauna_suit.png
+    - assets/images/suitcase.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

@@ -4,7 +4,9 @@ import '../colors.dart';
 import '../providers/cart_provider.dart';
 
 class ProductPage extends StatefulWidget {
-  final Map<String, Object> product;
+  // Product details passed as a map
+  final Map<String, dynamic> product;
+
   const ProductPage({
     Key? key,
     required this.product,
@@ -17,25 +19,26 @@ class ProductPage extends StatefulWidget {
 class _ProductPageState extends State<ProductPage> {
   dynamic selectedSize;
 
+  // Handles adding a product to the cart
   void onTap() {
-    if (selectedSize == null || selectedSize.isEmpty) {
+    if (selectedSize == null) {
       showCupertinoSnackBar(context, 'Please select a size');
     } else {
       final cartItem = {
-      'id': widget.product['id'],
-      'title': widget.product['title'],
-      'price': widget.product['price'],
-      'imageUrl': widget.product['imageUrl'],
-      'size': selectedSize, // Salva o tamanho escolhido
-    };
+        'id': widget.product['id'],
+        'title': widget.product['title'],
+        'price': widget.product['price'],
+        'imageUrl': widget.product['imageUrl'],
+        'size': selectedSize,
+      };
 
-    // Adiciona o produto ao carrinho
-    Provider.of<CartProvider>(context, listen: false).addProduct(cartItem);
+      Provider.of<CartProvider>(context, listen: false).addProduct(cartItem);
 
-      showCupertinoSnackBar(context, 'Producted added succesfully');
+      showCupertinoSnackBar(context, 'Product added successfully');
     }
   }
 
+  // Notification function
   void showCupertinoSnackBar(BuildContext context, String message) {
     showCupertinoDialog(
       context: context,
@@ -67,6 +70,7 @@ class _ProductPageState extends State<ProductPage> {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
+              // Product Details Header
               const Center(
                 child: Text(
                   'Details',
@@ -77,6 +81,7 @@ class _ProductPageState extends State<ProductPage> {
                 ),
               ),
               const SizedBox(height: 15),
+              // Product Title
               Text(
                 widget.product['title'] as String,
                 style: const TextStyle(
@@ -85,13 +90,16 @@ class _ProductPageState extends State<ProductPage> {
                 ),
               ),
               const Spacer(),
+              // Product Image
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Image.asset(widget.product['imageUrl'] as String,
+                child: Image.asset(
+                  widget.product['imageUrl'] as String,
                   height: 250,
                 ),
               ),
               const Spacer(flex: 2),
+              // Bottom Product Information and Actions
               Container(
                 height: 250,
                 width: double.infinity,
@@ -102,6 +110,7 @@ class _ProductPageState extends State<ProductPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    // Product Price
                     Text(
                       '${widget.product['price']}',
                       style: const TextStyle(
@@ -111,6 +120,7 @@ class _ProductPageState extends State<ProductPage> {
                       ),
                     ),
                     const SizedBox(height: 15),
+                    // Size Selection
                     SizedBox(
                       height: 50,
                       child: Center(
@@ -172,6 +182,7 @@ class _ProductPageState extends State<ProductPage> {
                       ),
                     ),
                     const SizedBox(height: 10),
+                    // Add to Cart Button
                     Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: CupertinoButton(

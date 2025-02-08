@@ -14,13 +14,13 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int currentPage = 0;
 
-  // Lista de páginas
+  // Page list
   final List<Widget> pages = const [
     ProductList(), 
     CartPage(),
   ];
 
-  // Função de navegação entre as páginas
+  // Page navigation
   void onBottomNavTapped(int index) {
     setState(() {
       currentPage = index;
@@ -39,7 +39,6 @@ class _HomePageState extends State<HomePage> {
               children: pages,
             ),
           ),
-          // Show selected page
           // Bottom Navigation Bar
           Container(
             height: 80,
